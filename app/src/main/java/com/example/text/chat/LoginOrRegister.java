@@ -13,16 +13,13 @@ import com.example.text.chat.LogUtil.LogUtil;
 
 public class LoginOrRegister extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "LoginOrRegister";
+
     private TabHost tabHost;
-
     private Button btnLogin;
-    private EditText etLoginUsername;
-    private EditText etLoginPassword;
-
+    private EditText etLoginUsername,etLoginPassword;
     private Button btnRegister;
-    private EditText etRegisterUsername;
-    private EditText etRegisterPassword;
-    private EditText etInsurePassword;
+    private EditText etRegisterUsername,etRegisterPassword,etInsurePassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +29,16 @@ public class LoginOrRegister extends AppCompatActivity implements View.OnClickLi
         LogUtil.d(TAG,"登入界面");
         initViews();
     }
-    private void initViews() {
+    private void initViews(){
+        //初始化控件
         tabHost = (TabHost) findViewById(R.id.tabHost);
 
+        //登录
         btnLogin = (Button) findViewById(R.id.btn_login);
         etLoginUsername = (EditText) findViewById(R.id.et_login_username);
         etLoginPassword = (EditText) findViewById(R.id.et_login_password);
 
+        //注册
         btnRegister = (Button) findViewById(R.id.btn_register);
         etRegisterUsername = (EditText) findViewById(R.id.et_register_username);
         etRegisterPassword = (EditText) findViewById(R.id.et_register_password);
@@ -48,28 +48,27 @@ public class LoginOrRegister extends AppCompatActivity implements View.OnClickLi
         tabHost.addTab(tabHost.newTabSpec("Login").setIndicator("Login").setContent(R.id.layout_login));
         tabHost.addTab(tabHost.newTabSpec("Register").setIndicator("Register").setContent(R.id.layout_register));
 
+        //注册监听
         btnLogin.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
-
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_login: {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            }
-            case R.id.btn_register: {
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                finish();
-                break;
-            }
-            default:
-                break;
-        }
+       switch (v.getId()){
+           case R.id.btn_login: {
+               Intent intent = new Intent(this, MainActivity.class);
+               startActivity(intent);
+               break;
+           }
+           case R.id.btn_register:{
+               Intent intent = new Intent(this,MainActivity.class);
+               startActivity(intent);
+               break;
+           }
+           default:
+               break;
+
+       }
     }
 }
